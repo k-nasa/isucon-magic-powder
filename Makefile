@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-APP_DIR := /home/isucon/isucari/webapp/go
+APP_DIR := todo
 
 NGINX_LOG := /var/log/nginx/access.log
 MYSQL_SLOW_LOG := /var/log/mysql/slow.log
@@ -10,9 +10,9 @@ NGINX_CONFIG := /etc/nging/nginx.conf
 
 DB_HOST := 127.0.0.1
 DB_PORT := 3306
-DB_USER := hoge
-DB_PASS := fuga
-DB_NAME := hogefuga
+DB_USER := todo
+DB_PASS := todo
+DB_NAME := todo
 
 EDIT_MYSQL_CONFIG := $(APP_DIR)/my.cnf
 EDIT_NGINX_CONFIG := $(APP_DIR)/ngin.conf
