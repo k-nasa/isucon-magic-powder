@@ -87,4 +87,4 @@ install_discordcat:
 
 .PHONY: check
 check:
-	@chmod +x ./check.sh && ./check.sh
+	@chmod +x ./check && ./check

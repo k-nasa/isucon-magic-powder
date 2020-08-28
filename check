@@ -1,3 +1,5 @@
+#!/bin/bash
+
 printf "\e[33m
 ==============================
 install checking!
