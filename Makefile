@@ -61,8 +61,8 @@ application_build: ## application build
 	cd $(APP_DIR); go build -o isucari
 	sudo systemctl restart isucari.golang.service
 
-.PHONY: setup
-setup: install_alp install_pt_query_digest install_discordcat check ## 使うtoolをインストールする
+.PHONY: bootstrap
+bootstrap: install_alp install_pt_query_digest install_discordcat check ## 使うtoolをインストールする
 
 .PHONY: install_alp
 install_alp:
