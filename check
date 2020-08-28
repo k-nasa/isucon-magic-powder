@@ -15,7 +15,7 @@ checking() {
   fi
 }
 
-COMMANDS=(alp pt-query-digest htop)
+COMMANDS=(alp pt-query-digest htop discordcat)
 
 for c in ${COMMANDS[@]}; do
     checking $c
