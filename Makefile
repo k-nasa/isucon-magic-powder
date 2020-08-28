@@ -69,7 +69,7 @@ install_alp:
 	@echo 'Install alp'
 	@wget https://github.com/tkuchiki/alp/releases/download/v1.0.3/alp_linux_amd64.zip
 	@unzip alp_linux_amd64.zip
-	@sudo mv alp_linux_amd64 /usr/local/bin/alp
+	@sudo mv alp /usr/local/bin/alp
 
 .PHONY: install_pt_query_digest
 install_pt_query_digest:
