@@ -1,8 +1,11 @@
 #!/bin/bash
 
 bootstrap() {
-  install_all > /dev/null 2>&1
+  git_init
   git_config > /dev/null 2>&1
+
+  install_all > /dev/null 2>&1
+  create_link
 
   check
 }
@@ -40,6 +43,30 @@ install_discordcat() {
   tar -xf discordcat_x86_64-unknown-linux-gnu.tar.gz
   sudo mv ./discordcat_x86_64-unknown-linux-gnu/discordcat /usr/local/bin/
   sudo chmod +x /usr/local/bin/discordcat
+}
+
+create_link() {
+  sudo cp /etc/nginx/nginx.conf $HOME/etc && sudo ln -sf $HOME/etc/nginx.conf /etc/nginx/
+  sudo cp /etc/mysql/my.cnf $HOME/etc/ && sudo ln -sf $HOME/etc/my.cnf /etc/mysql/
+}
+
+git_init() {
+  git init
+  ssh-keygen && cat $HOME/.ssh/id_rsa.pub
+
+  echo "Copy this SSH key (https://github.com/settings/ssh/new)"
+  while :
+  do
+    read -p "Added SSH key? (y/n)" input
+    if [ $input = "y" ]; then
+      echo "Continue to setup!"
+      break
+    elif [ $input = "n" ]; then
+      echo "Please Add SSH Key."
+    fi
+  done
+
+  ssh -T git@github.com
 }
 
 check() {
