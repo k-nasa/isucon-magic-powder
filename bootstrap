@@ -57,7 +57,7 @@ git_init() {
   git init
   ssh-keygen && cat $HOME/.ssh/id_rsa.pub
 
-  echo "Copy this SSH key (https://github.com/settings/ssh/new)"
+  printf "\e[34mCopy this SSH key (https://github.com/settings/ssh/new)\e[m\n"
   while :
   do
     read -p "Added SSH key? (y/n)" input

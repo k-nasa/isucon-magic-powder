@@ -8,7 +8,7 @@ isucon10用のスクリプト類
 ## Bootstrap
 
 ```
-curl https://raw.githubusercontent.com/k-nasa/magic-powder/master/bootstrap | sh
+curl https://raw.githubusercontent.com/k-nasa/magic-powder/master/bootstrap -O && chmod +x bootstrap && ./bootstrap
 ```
 
 ## Usage
