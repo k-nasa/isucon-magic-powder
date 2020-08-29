@@ -1,10 +1,15 @@
 #!/bin/bash
 
 bootstrap() {
+  install_all > /dev/null 2>&1
+
+  check
+}
+
+install_all() {
   install_alp
   install_pt_query_digest
   install_discordcat
-  check
 }
 
 
