@@ -60,31 +60,3 @@ bench: log_reset application_build ## bench回す前に実行するコマンド
 application_build: ## application build
 	cd $(APP_DIR); go build -o isucari
 	sudo systemctl restart isucari.golang.service
-
-.PHONY: bootstrap
-bootstrap: install_alp install_pt_query_digest install_discordcat check ## 使うtoolをインストールする
-
-.PHONY: install_alp
-install_alp:
-	@echo 'Install alp'
-	@wget https://github.com/tkuchiki/alp/releases/download/v1.0.3/alp_linux_amd64.zip
-	@unzip alp_linux_amd64.zip
-	@sudo mv alp /usr/local/bin/alp
-
-.PHONY: install_pt_query_digest
-install_pt_query_digest:
-	@echo 'Install pt-query-digest'
-	@wget https://github.com/percona/percona-toolkit/archive/3.0.5-test.tar.gz
-	@tar zxvf 3.0.5-test.tar.gz
-	@sudo mv ./percona-toolkit-3.0.5-test/bin/pt-query-digest /usr/local/bin/pt-query-digest
-
-.PHONY: install_discordcat
-install_discordcat:
-	@wget https://github.com/k-nasa/discordcat/releases/download/0.1.0/discordcat_x86_64-unknown-linux-gnu.tar.gz
-	@tar -xf discordcat_x86_64-unknown-linux-gnu.tar.gz
-	@sudo mv ./discordcat_x86_64-unknown-linux-gnu/discordcat /usr/local/bin/
-	@sudo chmod +x /usr/local/bin/discordcat
-
-.PHONY: check
-check:
-	@chmod +x ./check && ./check
