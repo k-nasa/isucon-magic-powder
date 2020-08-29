@@ -12,7 +12,7 @@ bootstrap() {
 
 git_config() {
   git config --global user.email "htilcs1115@gmail.com"
-	git config --global user.name "k-nasa"
+  git config --global user.name "k-nasa"
 
   git config --global core.editor 'vim -c "set fenc=utf-8"'
 }
@@ -69,8 +69,28 @@ git_init() {
   ssh -T git@github.com
 }
 
+checking() {
+  which $1 > /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    printf "\e[32m [ok]   $1 \e[m\n"
+  else
+    printf "\e[31m [err]  $1 \e[m \n"
+  fi
+}
+
 check() {
-  chmod +x ./check && ./check
+  printf "\e[33m
+  ==============================
+  install checking!
+  ==============================\n
+  \e[m"
+
+
+  COMMANDS=(alp pt-query-digest htop discordcat)
+
+  for c in ${COMMANDS[@]}; do
+    checking $c
+  done
 }
 
 bootstrap
