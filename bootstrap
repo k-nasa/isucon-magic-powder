@@ -99,8 +99,7 @@ check() {
   printf "\e[33m
 ==============================
 install checking!
-==============================\n
-  \e[m"
+==============================\n\e[m"
 
 
   COMMANDS=(alp pt-query-digest htop discordcat)
