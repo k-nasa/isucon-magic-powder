@@ -8,9 +8,7 @@ isucon10用のスクリプト類
 ## Bootstrap
 
 ```
-git clone https://github.com/k-nasa/magic-powder.git
-
-./bootstrap
+curl https://raw.githubusercontent.com/k-nasa/magic-powder/master/bootstrap | sh
 ```
 
 ## Usage

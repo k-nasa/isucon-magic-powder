@@ -1,11 +1,14 @@
 #!/bin/bash
 
+
 bootstrap() {
   git_init
   git_config > /dev/null 2>&1
 
   install_all > /dev/null 2>&1
   create_link
+
+  download_makefile
 
   check
 }
@@ -58,10 +61,10 @@ git_init() {
   while :
   do
     read -p "Added SSH key? (y/n)" input
-    if [ $input = "y" ]; then
+    if [ "$input" = "y" ]; then
       echo "Continue to setup!"
       break
-    elif [ $input = "n" ]; then
+    elif [ "$input" = "n" ]; then
       echo "Please Add SSH Key."
     fi
   done
@@ -91,6 +94,10 @@ check() {
   for c in ${COMMANDS[@]}; do
     checking $c
   done
+}
+
+download_makefile() {
+  crul -O https://raw.githubusercontent.com/k-nasa/magic-powder/master/Makefile
 }
 
 bootstrap
