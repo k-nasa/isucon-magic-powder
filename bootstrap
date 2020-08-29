@@ -2,8 +2,16 @@
 
 bootstrap() {
   install_all > /dev/null 2>&1
+  git_config > /dev/null 2>&1
 
   check
+}
+
+git_config() {
+  git config --global user.email "htilcs1115@gmail.com"
+	git config --global user.name "k-nasa"
+
+  git config --global core.editor 'vim -c "set fenc=utf-8"'
 }
 
 install_all() {
