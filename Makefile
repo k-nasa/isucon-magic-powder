@@ -73,6 +73,9 @@ mysql: ## mysql接続コマンド
 .PHONY: bench
 bench: slow_on log_reset application_build application_restart ## bench回す前に実行するコマンド
 
+pprof:
+	@go tool pprof -png -output pprof.png http://localhost:6060/debug/pprof/profile && discordcat -f pprof.png --filename pprof.png
+
 .PHONY: application_build
 application_build: ## application build
 	cd $(APP_DIR); go build -o isucari
