@@ -3,14 +3,26 @@
 
 bootstrap() {
   git_init
+
+  echo start git config
   git_config > /dev/null 2>&1
 
+  echo start install tools
   install_all > /dev/null 2>&1
+
   create_link
 
+  echo download Makefile
   download_makefile
 
   check
+
+  printf "\e[36m
+==============================
+Done!
+==============================\n
+  \e[m"
+
 }
 
 git_config() {
@@ -49,6 +61,8 @@ install_discordcat() {
 }
 
 create_link() {
+  mkdir $HOME/etc
+
   sudo cp /etc/nginx/nginx.conf $HOME/etc && sudo ln -sf $HOME/etc/nginx.conf /etc/nginx/
   sudo cp /etc/mysql/my.cnf $HOME/etc/ && sudo ln -sf $HOME/etc/my.cnf /etc/mysql/
 }
@@ -83,9 +97,9 @@ checking() {
 
 check() {
   printf "\e[33m
-  ==============================
-  install checking!
-  ==============================\n
+==============================
+install checking!
+==============================\n
   \e[m"
 
 
@@ -97,7 +111,7 @@ check() {
 }
 
 download_makefile() {
-  crul -O https://raw.githubusercontent.com/k-nasa/magic-powder/master/Makefile
+  curl -O https://raw.githubusercontent.com/k-nasa/magic-powder/master/Makefile
 }
 
 bootstrap
