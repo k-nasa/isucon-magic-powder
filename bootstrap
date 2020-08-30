@@ -1,25 +1,36 @@
 #!/bin/bash
 
+info() {
+  printf "\r  [ \033[00;34mINFO\033[0m ] $1\n"
+}
+
+success() {
+  printf "\r\033[2K  [  \033[00;32mOK\033[0m  ] $1\n"
+}
+
+error() {
+  printf "\r\033[2K  [  \031[00;32mERROR\033[0m  ] $1\n"
+}
+
 
 bootstrap() {
   git_init
 
-  printf "\e[36m start git config\n\e[m"
-  git_config > /dev/null 2>&1
+  info "start git config"
+  git_config
 
-  printf "\e[36m start install tools\n\e[m"
-  install_all > /dev/null 2>&1
+  info "start install tools"
+  install_all
 
-  printf "\e[36m create links \n\e[m"
+  info "create links"
   create_link
 
-  printf "\e[36m download Makefile \n\e[m"
+  info "download Makefile"
   download_makefile
 
   check
 
-  printf "\e[36m
-==============================
+  info "==============================
 Done!
 ==============================\n\e[m"
 
@@ -40,24 +51,32 @@ install_all() {
 
 
 install_alp() {
-  echo 'Install alp'
+  info 'Installing alp'
   wget https://github.com/tkuchiki/alp/releases/download/v1.0.3/alp_linux_amd64.zip
   unzip alp_linux_amd64.zip
   sudo mv alp /usr/local/bin/alp
+
+  success "install alp"
 }
 
 install_pt_query_digest() {
-  echo 'Install pt-query-digest'
+  info 'Install pt-query-digest'
   wget https://github.com/percona/percona-toolkit/archive/3.0.5-test.tar.gz
   tar zxvf 3.0.5-test.tar.gz
   sudo mv ./percona-toolkit-3.0.5-test/bin/pt-query-digest /usr/local/bin/pt-query-digest
+
+  success "install pt-query-digest"
 }
 
 install_discordcat() {
+  info 'Install discordcat'
+
   wget https://github.com/k-nasa/discordcat/releases/download/0.1.0/discordcat_x86_64-unknown-linux-gnu.tar.gz
   tar -xf discordcat_x86_64-unknown-linux-gnu.tar.gz
   sudo mv ./discordcat_x86_64-unknown-linux-gnu/discordcat /usr/local/bin/
   sudo chmod +x /usr/local/bin/discordcat
+
+  success "install discordcat"
 }
 
 create_link() {
