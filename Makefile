@@ -23,19 +23,6 @@ help: ## show help
 		printf "\033[36m%-20s\033[0m %s\n", $$1, $$2 \
 	}'
 
-.PHONY: setting
-setting: mysql_setting nginx_setting ## mysqlとnginxの設定を反映する
-
-.PHONY: mysql_setting
-mysql_setting: ## mysqlの設定を反映する
-	@sudo cp $(EDIT_MYSQL_CONFIG) $(MYSQL_CONFIG)
-	@sudo systemctl restart mysql.service
-
-.PHONY: nginx_setting
-nginx_setting: ## nginxの設定を反映する
-	@sudo cp $(EDIT_NGINX_CONFIG) $(NGINX_CONFIG)
-	@sudo systemctl restart nginx.service
-
 .PHONY: log_reset
 log_reset: ## logファイルを初期化する
 	@sudo cp /dev/null $(MYSQL_SLOW_LOG)
