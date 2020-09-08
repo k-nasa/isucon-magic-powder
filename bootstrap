@@ -56,6 +56,8 @@ install_alp() {
   unzip alp_linux_amd64.zip
   sudo mv alp /usr/local/bin/alp
 
+  rm alp_linux_amd64.zip
+
   success "install alp"
 }
 
@@ -64,6 +66,9 @@ install_pt_query_digest() {
   wget https://github.com/percona/percona-toolkit/archive/3.0.5-test.tar.gz
   tar zxvf 3.0.5-test.tar.gz
   sudo mv ./percona-toolkit-3.0.5-test/bin/pt-query-digest /usr/local/bin/pt-query-digest
+
+  rm 3.0.5-test.tar.gz
+  rm -rf percona-toolkit-3.0.5-test
 
   success "install pt-query-digest"
 }
@@ -75,6 +80,9 @@ install_discordcat() {
   tar -xf discordcat_x86_64-unknown-linux-gnu.tar.gz
   sudo mv ./discordcat_x86_64-unknown-linux-gnu/discordcat /usr/local/bin/
   sudo chmod +x /usr/local/bin/discordcat
+
+  rm discordcat_x86_64-unknown-linux-gnu.tar.gz
+  rm -rf discordcat_x86_64-unknown-linux-gnu
 
   success "install discordcat"
 }
