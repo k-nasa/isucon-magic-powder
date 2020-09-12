@@ -77,4 +77,4 @@ middleware_restart: ## mysqlとnginxのrestart
 restart: application_restart middleware_restart ## application, mysql, nginxのリスタート
 
 .PHONY: bench
-bench: slow_on log_reset application_build restart ## bench回す前に実行するコマンド
+bench: slow_on log_reset application_build restart ## bench回す前に実行するコマンド(これで全ての前処理が完了する状態を作る)
