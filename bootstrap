@@ -29,6 +29,9 @@ bootstrap() {
   info "download Makefile"
   download_makefile
 
+  info "download deploy script"
+  download_deploy_script
+
   check
 
   info "==============================
@@ -151,6 +154,11 @@ install checking!
 
 download_makefile() {
   curl -O https://raw.githubusercontent.com/k-nasa/magic-powder/master/Makefile
+}
+
+download_deploy_script() {
+  curl -O https://raw.githubusercontent.com/k-nasa/magic-powder/master/deploy
+  chmod +x deploy
 }
 
 bootstrap
