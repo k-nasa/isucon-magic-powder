@@ -12,6 +12,12 @@ error() {
   printf "[\033[00;31mERROR\033[0m] $1\n"
 }
 
+big_info() {
+  printf "\e[34m
+==============================
+$1
+==============================\n\e[m"
+}
 
 bootstrap() {
   info "start install tools"
@@ -34,9 +40,7 @@ bootstrap() {
 
   check
 
-  info "==============================
-Done!
-==============================\n\e[m"
+  info "script Done!"
 
 }
 
@@ -132,24 +136,36 @@ git_init() {
 checking() {
   which $1 > /dev/null 2>&1
   if [ $? -eq 0 ]; then
-    printf "\e[32m [ok]   $1 \e[m\n"
+    success "$1"
   else
-    printf "\e[31m [err]  $1 \e[m \n"
+    error "$1"
   fi
 }
 
-check() {
-  printf "\e[33m
-==============================
-install checking!
-==============================\n\e[m"
+file_check() {
+  big_info "file checking!"
 
+  FILES=(bootstrap Makefile deploy deploy_from_local)
+
+  for f in ${FILES[@]}; do
+    if [ -e $f ]; then
+      success "$f exists"
+    else
+      error "$f not exists"
+    fi
+  done
+}
+
+check() {
+  big_info "install checking!"
 
   COMMANDS=(alp pt-query-digest htop discordcat)
 
   for c in ${COMMANDS[@]}; do
     checking $c
   done
+
+  file_check
 }
 
 download_makefile() {
