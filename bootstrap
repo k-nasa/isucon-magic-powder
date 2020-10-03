@@ -108,7 +108,9 @@ create_link() {
   fi
 
   if [ -e $MYSQL_CONF ]; then
-    sudo cp $MYSQL_CONF $HOME/etc && sudo ln -sf $HOME/etc/mysql/my.cnf /etc/mysql
+    mkdir $HOME/etc/mysql
+
+    sudo cp $MYSQL_CONF $HOME/etc/mysql && sudo ln -sf $HOME/etc/mysql/my.cnf /etc/mysql
   else
     error "Not found mysql config file ($MYSQL_CONF)"
   fi
