@@ -4,8 +4,8 @@ warn() {
   printf "[\033[00;33mWARN\033[0m] $1\n"
 }
 
+TARGET=$1
+BRANCH=$2
 warn "Please implement $0"
 
-ssh isucon-a /home/isucon/deploy & \
-ssh isucon-b /home/isucon/deploy & \
-ssh isucon-c /home/isucon/deploy
+ssh $TARGET "/home/isucon/deploy $BRANCH"
