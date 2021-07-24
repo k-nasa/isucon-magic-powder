@@ -62,3 +62,33 @@ long_query_time = 0
 ```
 sudo mysql -e "show variables like 'slow_query%'"
 ```
+
+
+### query cache
+
+
+設定の確認方法
+
+```
+SHOW VARIABLES LIKE '%query_cache_%';
+
+show global status like "%QCache%";
+```
+
+## 複数台構成にする
+
+外部からmysqlにアクセスできるようにする必要がある
+
+
+https://qiita.com/tocomi/items/0c009d7299584df49378
+
+1. 設定ファイルでローカルホストにバインドされている場合はコメントアウトする
+
+```
+# bind-address = 127.0.0.1
+```
+
+2. grantする。
+```
+mysql> grant all privileges on [データベース名].* to root@"%" identified by 'パスワード' with grant option;
+```
