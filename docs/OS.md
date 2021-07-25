@@ -1,6 +1,6 @@
-## sar 
+## sar
 
-### install 
+### install
 
 ```
 sudo apt install sysstat -y
