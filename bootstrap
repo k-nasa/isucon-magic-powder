@@ -23,14 +23,12 @@ bootstrap() {
   info "start install tools"
   install_all
 
-  info "start git init"
-  git_init
+  # 必要なくなった
+  # info "start git init"
+  # git_init
 
   info "start git config"
   git_config
-
-  info "create links"
-  create_link
 
   info "download Makefile"
   download_makefile
@@ -60,9 +58,9 @@ install_all() {
 
 install_alp() {
   info 'Installing alp'
-  wget https://github.com/tkuchiki/alp/releases/download/v1.0.3/alp_linux_amd64.zip
+  wget https://github.com/tkuchiki/alp/releases/download/v1.0.7/alp_linux_amd64.zip
   unzip alp_linux_amd64.zip
-  sudo mv alp /usr/local/bin/alp
+  sudo mv alp /usr/bin/
 
   rm alp_linux_amd64.zip
 
@@ -73,7 +71,7 @@ install_pt_query_digest() {
   info 'Install pt-query-digest'
   wget https://github.com/percona/percona-toolkit/archive/3.0.5-test.tar.gz
   tar zxvf 3.0.5-test.tar.gz
-  sudo mv ./percona-toolkit-3.0.5-test/bin/pt-query-digest /usr/local/bin/pt-query-digest
+  sudo mv ./percona-toolkit-3.0.5-test/bin/pt-query-digest /usr/bin/
 
   rm 3.0.5-test.tar.gz
   rm -rf percona-toolkit-3.0.5-test
@@ -84,36 +82,15 @@ install_pt_query_digest() {
 install_discordcat() {
   info 'Install discordcat'
 
-  wget https://github.com/k-nasa/discordcat/releases/download/0.1.0/discordcat_x86_64-unknown-linux-gnu.tar.gz
+  wget https://github.com/k-nasa/discordcat/releases/download/0.2.0/discordcat_x86_64-unknown-linux-gnu.tar.gz
   tar -xf discordcat_x86_64-unknown-linux-gnu.tar.gz
-  sudo mv ./discordcat_x86_64-unknown-linux-gnu/discordcat /usr/local/bin/
-  sudo chmod +x /usr/local/bin/discordcat
+  sudo chmod +x discordcat
+  sudo mv ./discordcat_x86_64-unknown-linux-gnu/discordcat /usr/bin/
 
   rm discordcat_x86_64-unknown-linux-gnu.tar.gz
   rm -rf discordcat_x86_64-unknown-linux-gnu
 
   success "install discordcat"
-}
-
-create_link() {
-  mkdir $HOME/etc
-
-  NGINX_CONF=/etc/nginx/nginx.conf
-  MYSQL_CONF=/etc/mysql/my.cnf
-
-  if [ -e $NGINX_CONF ]; then
-    sudo cp $NGINX_CONF $HOME/etc && sudo ln -sf $HOME/etc/nginx.conf /etc/nginx/
-  else
-    error "Not found nginx config file ($NGINX_CONF)"
-  fi
-
-  if [ -e $MYSQL_CONF ]; then
-    mkdir $HOME/etc/mysql
-
-    sudo cp $MYSQL_CONF $HOME/etc/mysql && sudo ln -sf $HOME/etc/mysql/my.cnf /etc/mysql
-  else
-    error "Not found mysql config file ($MYSQL_CONF)"
-  fi
 }
 
 git_init() {
