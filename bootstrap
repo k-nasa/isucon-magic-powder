@@ -84,8 +84,8 @@ install_discordcat() {
 
   wget https://github.com/k-nasa/discordcat/releases/download/0.2.0/discordcat_x86_64-unknown-linux-gnu.tar.gz
   tar -xf discordcat_x86_64-unknown-linux-gnu.tar.gz
-  sudo chmod +x discordcat
   sudo mv ./discordcat_x86_64-unknown-linux-gnu/discordcat /usr/bin/
+  sudo chmod +x /usr/local/bin/discordcat
 
   rm discordcat_x86_64-unknown-linux-gnu.tar.gz
   rm -rf discordcat_x86_64-unknown-linux-gnu
