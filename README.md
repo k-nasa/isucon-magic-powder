@@ -1,6 +1,6 @@
 # magic-powder
 
-isucon10用のスクリプト類
+isucon用のスクリプト類
 
 - bootstrap 必要なツールを入れるスクリプト
 - Makefile よくやるオペレーションがまとまったファイル
