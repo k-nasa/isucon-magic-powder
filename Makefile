@@ -30,7 +30,7 @@ log_reset: ## logファイルを初期化する
 
 .PHONY: alp
 alp: ## alpのログを見る
-	@sudo cat $(NGINX_LOG) | alp ltsv --sort avg -r --format md -m "" --filters ""
+	@sudo cat $(NGINX_LOG) | alp ltsv --sort avg -r
 
 .PHONY: slow
 slow: ## スロークエリを見る
@@ -77,4 +77,4 @@ middleware_restart: ## mysqlとnginxのrestart
 restart: application_restart middleware_restart ## application, mysql, nginxのリスタート
 
 .PHONY: bench
-bench: slow_on log_reset application_build restart ## bench回す前に実行するコマンド(これで全ての前処理が完了する状態を作る)
+bench: log_reset application_build restart slow_on ## bench回す前に実行するコマンド(これで全ての前処理が完了する状態を作る)

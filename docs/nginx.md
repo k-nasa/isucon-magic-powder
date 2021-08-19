@@ -25,26 +25,22 @@ access_log /var/log/nginx/access.log ltsv;
 
 json
 
-```
-
-log_format json '{'
-  '"time": "$time_local",'
-  '"remote_addr": "$remote_addr",'
-  '"host": "$host",'
-  '"remote_user": "$remote_user",'
-  '"status": "$status",'
-  '"server_protocol": "$server_protocol",'
-  '"request_method": "$request_method",'
-  '"request_uri": "$request_uri",'
-  '"request": "$request",'
-  '"body_bytes_sent": "$body_bytes_sent",'
-  '"request_time": "$request_time",'
-  '"upstream_response_time": "$upstream_response_time",'
-  '"http_referer": "$http_referer", '
-  '"http_user_agent": "$http_user_agent",'
-  '"http_x_forwarded_for": "$http_x_forwarded_for",'
-  '"http_x_forwarded_proto": "$http_x_forwarded_proto"'
-'}';
+```nginx.conf
+log_format json escape=json '{"time":"$time_local",'
+  '"host":"$remote_addr",'
+    '"forwardedfor":"$http_x_forwarded_for",'
+    '"req":"$request",'
+    '"status":"$status",'
+    '"method":"$request_method",'
+    '"uri":"$request_uri",'
+    '"body_bytes":$body_bytes_sent,'
+    '"referer":"$http_referer",'
+    '"ua":"$http_user_agent",'
+    '"request_time":$request_time,'
+    '"cache":"$upstream_http_x_cache",'
+    '"runtime":"$upstream_http_x_runtime",'
+    '"response_time":"$upstream_response_time",'
+    '"vhost":"$host"}';
 
 access_log /var/log/nginx/access.log json;
 ```
