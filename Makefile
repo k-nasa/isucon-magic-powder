@@ -30,7 +30,7 @@ log_reset: ## logファイルを初期化する
 
 .PHONY: alp
 alp: ## alpのログを見る
-	@sudo cat $(NGINX_LOG) | alp ltsv --sort avg -r
+	@sudo cat $(NGINX_LOG) | alp json --sort avg -r
 
 .PHONY: slow
 slow: ## スロークエリを見る
