@@ -1,3 +1,10 @@
+
+## dstat
+
+```sh
+dstat -tlnr --top-cpu --top-mem --top-io --top-bio
+```
+
 ## sar
 
 ### install
