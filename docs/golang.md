@@ -1,6 +1,6 @@
 sqlxのIn句 && where句のやつ
 
-```
+```go
 func NamedInSql(db sqlx.DB, query string, arg interface{}) (string, []interface{}, error) {
     query, args, err := sqlx.Named(query, arg)
     if err != nil {
