@@ -1,0 +1,26 @@
+#!/bin/bash
+
+warn() {
+  printf "[\033[00;33mWARN\033[0m] $1\n"
+}
+
+BRANCH=$1
+
+# branch 指定がなければ current branch を指定したとみなす
+if [ -z "$BRANCH" ]; then
+  BRANCH=`git rev-parse --abbrev-ref HEAD`
+fi
+
+echo "cd /home/isucon && \
+git fetch && \
+git stash && \
+git checkout $BRANCH && \
+git pull origin $BRANCH && \
+make bench"
+
+cd /home/isucon && \
+git fetch && \
+git stash && \
+git checkout $BRANCH && \
+git pull origin $BRANCH && \
+make bench

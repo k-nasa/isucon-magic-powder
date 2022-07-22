@@ -1,20 +1,40 @@
 #!/bin/bash
 
-warn() {
-  printf "[\033[00;33mWARN\033[0m] $1\n"
+big_info() {
+  printf "\e[34m
+================================================
+$1
+================================================\n\e[m"
 }
 
-BRANCH=$1
-warn "Please implement $0"
+TARGET=$1
+BRANCH=$2
 
-echo "cd /home/isucon && \
-git stash && \
-git checkout $BRANCH && \
-git pull origin $BRANCH && \
-make bench"
+# branch 指定がなければ current branch を指定したとみなす
+if [ -z "$BRANCH" ]; then
+  BRANCH=`git rev-parse --abbrev-ref HEAD`
+fi
 
-cd /home/isucon && \
-git stash && \
-git checkout $BRANCH && \
-git pull origin $BRANCH && \
-make bench
+# 1台目への deploy
+if [[ "$TARGET" == *"1"* ]]; then
+  SSH_OPTION="isu12q-1"
+
+  big_info "deploy $BRANCH to $SSH_OPTION"
+  ssh $SSH_OPTION "sudo -u isucon /home/isucon/deploy_on_remote $BRANCH"
+fi
+
+# 2台目への deploy
+if [[ "$TARGET" == *"2"* ]]; then
+  SSH_OPTION="isu12q-2"
+
+  big_info "deploy $BRANCH to $SSH_OPTION"
+  ssh $SSH_OPTION "sudo -u isucon /home/isucon/deploy_on_remote $BRANCH"
+fi
+
+# 3台目への deploy
+if [[ "$TARGET" == *"3"* ]]; then
+  SSH_OPTION="isu12q-3"
+
+  big_info "deploy $BRANCH to $SSH_OPTION"
+  ssh $SSH_OPTION "sudo -u isucon /home/isucon/deploy_on_remote $BRANCH"
+fi

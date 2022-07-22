@@ -155,8 +155,8 @@ download_deploy_script() {
   curl -O https://raw.githubusercontent.com/k-nasa/magic-powder/master/deploy
   chmod +x deploy
 
-  curl -O https://raw.githubusercontent.com/k-nasa/magic-powder/master/deploy_from_local
-  chmod +x deploy_from_local
+  curl -O https://raw.githubusercontent.com/k-nasa/magic-powder/master/deploy_on_remote
+  chmod +x deploy_on_remote
 }
 
 bootstrap
