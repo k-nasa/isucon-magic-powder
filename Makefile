@@ -82,5 +82,5 @@ bench: log_reset application_build restart slow_on ## bench回す前に実行す
 .PHONY: commit
 commit:
 	git add -u .
-	git commit --allow-empty -m "bench"
+	git commit --allow-empty -m "isucon"
 	git push origin HEAD
