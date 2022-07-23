@@ -78,3 +78,9 @@ restart: application_restart middleware_restart ## application, mysql, nginxの�
 
 .PHONY: bench
 bench: log_reset application_build restart slow_on ## bench回す前に実行するコマンド(これで全ての前処理が完了する状態を作る)
+
+.PHONY: commit
+commit:
+	git add -u .
+	git commit --allow-empty -m "bench"
+	git push origin HEAD
